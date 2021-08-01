@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,12 @@ public class JobPositionManager implements JobPositionService{
 		List<JobPosition> jobPositions = this.jobPositionDao.findAll();
 		return jobPositions;
 		}
+
+	@Override
+	public JobPosition getById(Integer id) {
+		// TODO Auto-generated method stub
+		Optional<JobPosition> jobPosition = this.jobPositionDao.findById(id);
+		return jobPosition.isPresent() ? jobPosition.get() : null ;
+	}
 
 }
