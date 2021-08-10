@@ -1,8 +1,9 @@
 package kodlamaio.hrms.business.abstracts;
 import java.util.*;
 
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 public interface JobPositionService {
-	List<JobPosition> getAll();
+	DataResult<List<JobPosition>> getAll(); //hangi türde veri döndüreceksem <> generik içerisine yazdım
 	JobPosition  getById(Integer id);
 }

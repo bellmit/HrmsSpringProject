@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstarcts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 
@@ -22,10 +24,12 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		// TODO Auto-generated method stub
-		List<JobPosition> jobPositions = this.jobPositionDao.findAll();
-		return jobPositions;
+	public DataResult<List<JobPosition>> getAll() {
+		// Datası this.jobPositionDao.findAll dur ve message ise "data listelendi" dir.
+		//SuccessDataResult ı new leyebiliyoruz çünkü atası DataResulttır.
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"Data listelendi");
+		
+		
 		}
 
 	@Override
