@@ -14,7 +14,7 @@ public class DataResult<T> extends Result { //DataResult ın alacağı veri tipi
 		this.data=data;
 	}
 	public T getData() {
-		return this.getData();
+		return this.data;
 	}
 
 
