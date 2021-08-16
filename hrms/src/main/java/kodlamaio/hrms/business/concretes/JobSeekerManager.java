@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.sun.net.httpserver.Authenticator.Result;
-
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstarcts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.JobSeeker;

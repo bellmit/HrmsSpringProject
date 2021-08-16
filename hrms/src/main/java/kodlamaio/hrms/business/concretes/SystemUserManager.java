@@ -4,17 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.sun.net.httpserver.Authenticator.Result;
-
-import kodlamaio.hrms.business.abstracts.SytemUserService;
+import kodlamaio.hrms.business.abstracts.SystemUserService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstarcts.SystemUserDao;
-import kodlamaio.hrms.entities.concretes.JobPosition;
 import kodlamaio.hrms.entities.concretes.SystemUser;
 @Service
-public class SystemUserManager implements SytemUserService {
+public class SystemUserManager implements SystemUserService {
 	private SystemUserDao sytemUserDao;
 	
 	@Autowired
@@ -30,8 +27,10 @@ public class SystemUserManager implements SytemUserService {
 
 	@Override
 	public Result add(SystemUser systemUser) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

@@ -1,11 +1,10 @@
 package kodlamaio.hrms.business.abstracts;
 import java.util.List;
-
-import com.sun.net.httpserver.Authenticator.Result;
-
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.concretes.Verification;
+
 public interface VerificationService {
 	DataResult<List<Verification>> getAll(); 
 	
