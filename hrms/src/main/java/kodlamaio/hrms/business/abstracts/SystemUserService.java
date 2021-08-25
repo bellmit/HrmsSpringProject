@@ -6,7 +6,8 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.SystemUser;
 import java.util.List;
 
-public interface SystemUserService {
+public interface SystemUserService extends UserService{
 	DataResult<List<SystemUser>> getAll();
 	Result add(SystemUser systemUser);
+	Result delete(SystemUser systemUser);
 }

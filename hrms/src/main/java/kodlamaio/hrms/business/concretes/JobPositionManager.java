@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstarcts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.concretes.User;
 
 @Service
 public class JobPositionManager implements JobPositionService{
@@ -31,8 +32,6 @@ public class JobPositionManager implements JobPositionService{
 		// Datası this.jobPositionDao.findAll dur ve message ise "data listelendi" dir.
 		//SuccessDataResult ı new leyebiliyoruz çünkü atası DataResulttır.
 		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"Iş pozisyonları listelendi");
-		
-		
 		}
 
 	@Override
@@ -43,9 +42,16 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public Result add(JobPosition jobPosition) {
-		this.jobPositionDao.save(jobPosition);
-		return new SuccessResult("kaydedildi");
+	public Result save(String jobPositionTitle) {
+		if(jobPositionDao.existsJobPositionByTitle(jobPositionTitle))
+			return new Result(false,"pozisyon mevcuttur");
+		return new DataResult<JobPosition>(jobPositionDao.save(new JobPosition(0,"new title")), true, "pozisyon eklendi");
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

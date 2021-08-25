@@ -7,7 +7,10 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 import java.util.List;
 
 
-public interface JobSeekerService{
-	Result add(JobSeeker jobSeeker);
+public interface JobSeekerService extends UserService{
+	Result save(JobSeeker jobSeeker);
+	Result delete(JobSeeker jobSeeker);
+	//DataResult<List<JobSeeker>> getAll();
 	DataResult<List<JobSeeker>> getAll();
+	JobSeeker findByIdentityNumber(String identityNumber);
 }

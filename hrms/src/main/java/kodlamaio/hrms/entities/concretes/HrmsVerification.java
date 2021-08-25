@@ -2,26 +2,30 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity
+
 @Data
-@Table(name="verification")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Verification {
+@Table(name="hrms_verification")
+public class HrmsVerification {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="verification_id")
-	private int verificationId;
+	private int id;
 	
-	@Column(name="email")
-	private boolean email;
+	@Column(name="employer_id")
+	private int employerId;
 	
+	@Column(name="system_user_id")
+	private int personelId;
+	
+	@Column(name="is_verify")
+	private boolean isVerify;
+
 }

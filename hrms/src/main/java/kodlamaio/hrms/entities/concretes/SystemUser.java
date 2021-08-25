@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name="system_users")
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
+@PrimaryKeyJoinColumn(name = "system_user_id")
 
 public class SystemUser extends User{
 	

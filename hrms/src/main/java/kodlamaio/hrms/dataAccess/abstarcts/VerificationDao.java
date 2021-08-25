@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import kodlamaio.hrms.entities.concretes.Verification;
 
-
-public interface VerificationDao extends JpaRepository  <Verification,Integer>{
-
+public interface VerificationDao extends JpaRepository<Verification,Integer> {
+	
 }

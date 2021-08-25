@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
+@PrimaryKeyJoinColumn(name = "job_seeker_id")
 
 
 public class JobSeeker extends User {
@@ -31,10 +33,14 @@ public class JobSeeker extends User {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="identity_number")
+	@Column(name="identity_number",unique=true)
 	private String identityNumber;
 	
 	@Column(name="birth_of_year")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birtOfYear;
+
+	@Column(name="is_verify")
+	private boolean isVerify; 
 	
 }

@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +11,21 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity
 @Data
-@Table(name="verification")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Verification {
+@Table(name="mernis_verification")
+public class MernisVerification {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="verification_id")
-	private int verificationId;
+	private int id;
 	
-	@Column(name="email")
-	private boolean email;
+	@Column(name="job_seeker_id")
+	private int seekerId;
 	
+	@Column(name="is_verify")
+	private boolean isVerify;
+
 }

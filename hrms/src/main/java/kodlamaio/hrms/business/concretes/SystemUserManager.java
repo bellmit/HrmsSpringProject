@@ -8,8 +8,10 @@ import kodlamaio.hrms.business.abstracts.SystemUserService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstarcts.SystemUserDao;
 import kodlamaio.hrms.entities.concretes.SystemUser;
+import kodlamaio.hrms.entities.concretes.User;
 @Service
 public class SystemUserManager implements SystemUserService {
 	private SystemUserDao sytemUserDao;
@@ -27,9 +29,21 @@ public class SystemUserManager implements SystemUserService {
 
 	@Override
 	public Result add(SystemUser systemUser) {
-		// TODO Auto-generated method stub
-		return null;
+		this.sytemUserDao.save(systemUser);
+		return new SuccessResult("Sistem kullancısı eklendi");
 	}
+
+	@Override
+	public Result delete(SystemUser systemUser) {
+		this.sytemUserDao.deleteById(systemUser.getId());
+		return new SuccessResult("Kullanıcı silindi");
+	}
+
+	@Override
+	public SystemUser findByEmail(String email) {
+		return this.sytemUserDao.findByEmail(email);
+	}
+	
 
 	
 

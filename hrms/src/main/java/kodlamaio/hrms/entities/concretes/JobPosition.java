@@ -25,7 +25,8 @@ public class JobPosition{
 	@Column(name="position_id")
 	private int id;
 	
-	@Column(name="title")
+
+	@Column(name="title", unique=true)
 	private String title;
 
 	

@@ -1,11 +1,18 @@
 package kodlamaio.hrms.dataAccess.abstarcts;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 
 
 public interface JobSeekerDao extends JpaRepository<JobSeeker,Integer>{
+
+	JobSeeker findByIdentityNumber(String identityNumber);//Geri dönerken bize jobSeeker döndürecek(tipi).yoksa null döndürecek
+	
+	JobSeeker findByEmail(String email);
 
 }

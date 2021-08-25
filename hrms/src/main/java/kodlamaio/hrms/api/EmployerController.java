@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 
@@ -28,4 +29,8 @@ public class EmployerController {
 		return this.employerService.getAll();
 	}
 	
+	@GetMapping("/save")
+	public Result save(Employer employer) {
+		return this.employerService.save(employer);
+	}
 }
