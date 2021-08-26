@@ -1,15 +1,18 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.SystemUserService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstarcts.SystemUserDao;
+import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.SystemUser;
 import kodlamaio.hrms.entities.concretes.User;
 @Service
@@ -35,8 +38,12 @@ public class SystemUserManager implements SystemUserService {
 
 	@Override
 	public Result delete(SystemUser systemUser) {
-		this.sytemUserDao.deleteById(systemUser.getId());
-		return new SuccessResult("Kullanıcı silindi");
+		Optional<SystemUser> systemuser = this.sytemUserDao.findById(systemUser.getId());
+		if(systemuser.isPresent()) {
+			this.sytemUserDao.deleteById(systemUser.getId());
+			return new SuccessResult("Kullanıcı silindi");
+		}
+		return  new ErrorDataResult<List<Employer>>(systemUser.getId() + " id'li sistem kullanıcısı bulunamadı.");
 	}
 
 	@Override

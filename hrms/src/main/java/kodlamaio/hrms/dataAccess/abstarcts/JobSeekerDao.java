@@ -14,5 +14,7 @@ public interface JobSeekerDao extends JpaRepository<JobSeeker,Integer>{
 	JobSeeker findByIdentityNumber(String identityNumber);//Geri dönerken bize jobSeeker döndürecek(tipi).yoksa null döndürecek
 	
 	JobSeeker findByEmail(String email);
+	
+	JobSeeker findByIdentityNumberOrEmail(String identityNumber,String email);
 
 }

@@ -43,9 +43,13 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public Result save(String jobPositionTitle) {
-		if(jobPositionDao.existsJobPositionByTitle(jobPositionTitle))
+		if(isExistJobPosition(jobPositionTitle))
 			return new Result(false,"pozisyon mevcuttur");
-		return new DataResult<JobPosition>(jobPositionDao.save(new JobPosition(0,"new title")), true, "pozisyon eklendi");
+		return new DataResult<JobPosition>(jobPositionDao.save(new JobPosition(0,jobPositionTitle)), true, "pozisyon eklendi");
+	}
+
+	private boolean isExistJobPosition(String jobPositionTitle) {
+		return jobPositionDao.findByTitle(jobPositionTitle) != null;
 	}
 
 	@Override

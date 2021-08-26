@@ -26,11 +26,16 @@ public class JobSeekerManager implements JobSeekerService{
 	
 	@Override
 	public Result save(JobSeeker jobSeeker) {
-		if(!isExistJobSeekerWithIdentityNumber(jobSeeker) && !isExistJobSeekerWithEmail(jobSeeker)) {
+		if(!isExistJobSeekerWithIdentityNumberOrEmail(jobSeeker)) {
 			jobSeekerDao.save(jobSeeker);
 			return new SuccessResult("Aday eklendi");
 		}
 		return new ErrorResult("Kaydedilemedi, sistemde aynı kimlik numarası veya email ile kayıtlı bir kullanıcı mevcuttur.");
+	}
+
+	private boolean isExistJobSeekerWithIdentityNumberOrEmail(JobSeeker jobSeeker) {
+		// TODO Auto-generated method stub
+		return this.jobSeekerDao.findByIdentityNumberOrEmail(jobSeeker.getIdentityNumber(), jobSeeker.getEmail()) != null;
 	}
 
 	private boolean isExistJobSeekerWithEmail(JobSeeker jobSeeker) {
