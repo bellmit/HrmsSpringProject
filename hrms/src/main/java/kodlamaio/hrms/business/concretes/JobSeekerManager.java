@@ -68,11 +68,7 @@ public class JobSeekerManager implements JobSeekerService{
 	public DataResult<List<JobSeeker>> getAll() {
 		return new DataResult<List<JobSeeker>>(jobSeekerDao.findAll(),true,"Adaylar listelendi");
 	}
-	/*@Override
-	public DataResult<List<JobSeeker>> getAll() {
-		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.getAll(), "İş arayanlar listelendi");
-		
-	}*/
+	
 	
 
 

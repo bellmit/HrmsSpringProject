@@ -6,5 +6,6 @@ import kodlamaio.hrms.entities.concretes.SystemUser;
 
 public interface SystemUserDao extends JpaRepository<SystemUser,Integer> {
 	SystemUser findByEmail(String email);
+	SystemUser findByEmailOrFirstName(String email,String firstName);
 	
 }

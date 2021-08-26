@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.SystemUserService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -32,9 +33,17 @@ public class SystemUserManager implements SystemUserService {
 
 	@Override
 	public Result add(SystemUser systemUser) {
+		if(!isExistSystemUserEmailOrName(systemUser)) {
 		this.sytemUserDao.save(systemUser);
 		return new SuccessResult("Sistem kullancısı eklendi");
+		}
+		return new ErrorResult(systemUser.getFirstName()+ "isimli sistem kullanıcısı ile aynı isimde başka bir kullanıcı olduğu için eklenemedi");
 	}
+
+	private boolean isExistSystemUserEmailOrName(SystemUser systemUser) {
+		return this.sytemUserDao.findByEmailOrFirstName(systemUser.getEmail(),systemUser.getFirstName()) != null; 
+	}
+
 
 	@Override
 	public Result delete(SystemUser systemUser) {
