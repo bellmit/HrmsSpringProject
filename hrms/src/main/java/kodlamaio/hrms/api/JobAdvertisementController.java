@@ -57,7 +57,10 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployer_CompanyName(String companyName) {
 		return (DataResult) this.jobAdvertisementService.getByIsActiveJobAdvertisementAndEmployer_CompanyName(true, companyName);	
 	}
-	
+	@GetMapping("setJobAdvertisementStatus")
+	public Result setJobAdvertisementStatus(int id) {
+		return (Result) this.setJobAdvertisementStatus(id);
+	}
 	
 	
 	

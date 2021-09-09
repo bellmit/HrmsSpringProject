@@ -76,6 +76,14 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		(this.jobAdvertisementDao.getByIsActiveTrueAndEmployer_CompanyName(companyName),companyName);
 	}
 
+	@Override
+	public Result setJobAdvertisementStatus(int id) {
+		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
+		jobAdvertisement.setActive(false);
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("iş ilanı sonlandırıldı");
+	}
+
 	
 
 	

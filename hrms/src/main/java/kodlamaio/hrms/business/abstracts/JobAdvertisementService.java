@@ -22,9 +22,8 @@ public interface JobAdvertisementService {
 	 DataResult<List<JobAdvertisement>> getAllApplicationDeadlineDesc();
 	
 	 DataResult<List<JobAdvertisement>> getByIsActiveJobAdvertisementAndEmployer_CompanyName(boolean isActive, String companyName);
-	
-	 //public Result closeJobPosting(int id);
+	 
+	 Result setJobAdvertisementStatus(int id);
 
-	 //public Result openJobPosting(int id);
 	
 }
