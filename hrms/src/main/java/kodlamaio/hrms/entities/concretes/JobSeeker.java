@@ -1,12 +1,16 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -40,5 +44,12 @@ public class JobSeeker extends User {
 
 	@Column(name="is_verify")
 	private boolean isVerify; 
+	
+	@OneToOne()
+	@JoinColumn(name="cvId")
+	private CurriculumVitae curriculumVitae;
+	
+	
+	
 	
 }
