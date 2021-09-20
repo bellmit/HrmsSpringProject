@@ -25,11 +25,11 @@ public class ProgramingLanguage {
 		@Column(name="prog_language_id")
 		private int progLanguageId;
 		
-		@Column(name="language_name")
-		private String languageName;
+		@Column(name="planguage_name")
+		private String planguageName;
 		
-		@Column(name="level")
-		private int level;
+		@Column(name="plevel")
+		private int plevel;
 		
 		@JoinColumn(name="job_seeker_id")
 		@ManyToOne(fetch = FetchType.LAZY)

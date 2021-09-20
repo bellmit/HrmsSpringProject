@@ -35,7 +35,7 @@ public class Image {
 	@Column(name="uploaded_date")
 	private LocalDate uploadedDate=LocalDate.now();
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 	

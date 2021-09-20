@@ -10,7 +10,6 @@ import java.util.List;
 public interface JobSeekerService extends UserService{
 	Result save(JobSeeker jobSeeker);
 	Result delete(JobSeeker jobSeeker);
-	//DataResult<List<JobSeeker>> getAll();
 	DataResult<List<JobSeeker>> getAll();
 	JobSeeker findByIdentityNumber(String identityNumber);
 }

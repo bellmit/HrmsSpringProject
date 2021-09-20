@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +30,8 @@ public class ForeignLanguage {
 	@Column(name="foreign_language_id")
 	private int foreignLanguageId;
 	
-	@Column(name="language_name")
-	private String languageName;
+	@Column(name="flanguage_name")
+	private String flanguageName;
 	
 	@Column(name="level")
 	private int level;
@@ -36,6 +39,7 @@ public class ForeignLanguage {
 	@JoinColumn(name="job_seeker_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private JobSeeker jobSeeker;
+	
 	
 	@JoinColumn(name="cv_id")
 	@ManyToOne(fetch = FetchType.LAZY)

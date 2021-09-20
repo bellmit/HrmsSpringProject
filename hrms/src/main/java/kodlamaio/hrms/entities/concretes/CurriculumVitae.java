@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +23,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@JsonIgnoreProperties({"HyberbernateLazyInitializer","handler","employer"})
 @Table(name="Curriculum_vitae")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,12 +32,12 @@ public class CurriculumVitae {
 	@Column(name="cv_id")
 	private int cvId;
 	
-	@OneToOne()
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker; 
 	
-	@Column(name="photo")
-	private String photo;
+	//@Column(name="image")
+	//private String imageLink;
 	
 	@Column(name="githup_link")
 	private String githupLink;
@@ -48,19 +48,28 @@ public class CurriculumVitae {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "curriculumVitae")
 	private List<Image> images;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="curriculumVitae")
 	private List<School> schools;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<ForeignLanguage> foreignLanguages;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<ProgramingLanguage> programingLanguages;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
-	private List<JobExperience> JobExperiences;
+	private List<JobExperience> jobExperiences;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
+	private List<Image> imageUrls;
 	
 }

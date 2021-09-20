@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +34,7 @@ public class School {
 	@Column(name="school_name")
 	private String schoolName;
 	
-	@Column(name="department")
+	@Column(name="departmant")
 	private String departmant;
 	
 	@Column(name="startDate")
@@ -43,13 +45,15 @@ public class School {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date graduationYear;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 	
 	@JoinColumn(name="cv_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CurriculumVitae curriculumVitae;
+	
+	
 	
 	
 }
