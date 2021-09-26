@@ -14,12 +14,13 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.School;
-//import kodlamaio.hrms.entities.dtos.SchoolDto;
+
 @RestController
 @RequestMapping("/api/School")
 public class SchoolController {
 	@Autowired
 	private SchoolService schoolService;
+	
 
 	public SchoolController(SchoolService schoolService) {
 		super();
@@ -39,11 +40,6 @@ public class SchoolController {
 	public Result save(@RequestBody School school) {
 		return this.schoolService.save(school);
 	}
-	
-	/*@GetMapping("/getSchoolDetails")
-	public DataResult <List<SchoolDto>> getSchoolAll(){
-		return this.schoolService.getSchoolDetails();
-	}*/
 	
 	
 }

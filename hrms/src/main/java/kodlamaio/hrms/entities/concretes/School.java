@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
 @Table(name="schools")
 public class School {
 	@Id
@@ -40,6 +41,9 @@ public class School {
 	@Column(name="startDate")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
+	
+	@Column(name="is_graduated")
+	private boolean isGraduated=true;
 	
 	@Column(name="graduation_year")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

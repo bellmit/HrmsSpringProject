@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
 @PrimaryKeyJoinColumn(name = "job_seeker_id")
 
 public class JobSeeker extends User {
@@ -55,6 +57,9 @@ public class JobSeeker extends User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<School> schools;
+	
+	/*@OneToMany(mappedBy="jobSeeker")
+	private List<SocialLink> socialLinks;*/
 	
 	
 	

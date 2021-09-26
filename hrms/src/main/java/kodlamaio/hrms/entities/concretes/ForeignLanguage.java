@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name="foreign_languages")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
 public class ForeignLanguage {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

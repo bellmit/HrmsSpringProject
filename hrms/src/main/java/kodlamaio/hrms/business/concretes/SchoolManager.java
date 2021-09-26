@@ -41,10 +41,4 @@ public class SchoolManager implements SchoolService{
 		return new SuccessDataResult("Okul kaydedildi");
 		
 	}
-
-	/*@Override
-	public DataResult<List<SchoolDto>> getJobSeekerWithSchoolDetails() {
-		return new SuccessDataResult<List<SchoolDto>>(this.schoolDao.getJobSeekerWithSchoolDetails(), "öğrencinin adı,soyadı,okuduğu okullar ve bölümleri başarıyla getirildi.");
-	}*/
-
 }

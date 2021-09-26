@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Curriculum_vitae")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
 public class CurriculumVitae {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -19,6 +19,8 @@ public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integ
 			+"Inner Join cv.jobExperiences je Inner Join cv.images i  where cv.cvId=:id")
 	List<JobSeekerWithCvDto> jobSeekerWithCvDto(Integer id);
 	
+	CurriculumVitae getAllByJobSeekerId(int jobSeekerId);
+	
 	
 	
 }

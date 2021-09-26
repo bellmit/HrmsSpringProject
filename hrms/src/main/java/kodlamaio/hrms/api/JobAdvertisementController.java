@@ -28,7 +28,7 @@ public class JobAdvertisementController {
 	}
 	
 	@PostMapping("/save")
-	public Result save(JobAdvertisement jobAdvertisement) {
+	public Result save(@RequestBody JobAdvertisement jobAdvertisement) {
 		return this.jobAdvertisementService.save(jobAdvertisement);
 	}
 	@PostMapping("/update")
