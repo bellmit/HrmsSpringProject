@@ -9,11 +9,16 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstarcts.JobPositionDao;
+import kodlamaio.hrms.entities.concretes.CurriculumVitae;
+import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.concretes.User;
 
 @Service
@@ -29,8 +34,6 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
-		// Datası this.jobPositionDao.findAll dur ve message ise "data listelendi" dir.
-		//SuccessDataResult ı new leyebiliyoruz çünkü atası DataResulttır.
 		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"Iş pozisyonları listelendi");
 		}
 
@@ -42,14 +45,17 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public Result save(String jobPositionTitle) {
-		if(isExistJobPosition(jobPositionTitle))
-			return new Result(false,"pozisyon mevcuttur");
-		return new DataResult<JobPosition>(jobPositionDao.save(new JobPosition(0,jobPositionTitle, null)), true, "pozisyon eklendi");
+	public Result save(JobPosition jobPosition) {
+		if(!existPositionByTitle(jobPosition)) {
+			jobPositionDao.save(jobPosition);
+			return new SuccessResult("Pozisyon kaydedildi");
+		}
+		return new ErrorDataResult<>(jobPosition.getTitle()+ " isimli pozisyon sistemde kayıtlı olduğu için işlem başarısız oldu!");
+		
 	}
-
-	private boolean isExistJobPosition(String jobPositionTitle) {
-		return jobPositionDao.getByTitle(jobPositionTitle) != null;
+	private boolean existPositionByTitle(JobPosition jobPosition) {
+		
+		return jobPositionDao.findByTitle(jobPosition.getTitle())!=null;
 	}
 
 	@Override
@@ -57,5 +63,8 @@ public class JobPositionManager implements JobPositionService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 }

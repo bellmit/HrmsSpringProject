@@ -3,6 +3,7 @@ package kodlamaio.hrms.entities.concretes;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@PrimaryKeyJoinColumn(name = "job_seeker_id")
+@PrimaryKeyJoinColumn(name="job_seeker_id",referencedColumnName = "id")
 
 public class JobSeeker extends User {
 	
@@ -50,7 +51,7 @@ public class JobSeeker extends User {
 	@Column(name="is_verify")
 	private boolean isVerify; 
 	
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="cvId")
 	private CurriculumVitae curriculumVitae;
 	

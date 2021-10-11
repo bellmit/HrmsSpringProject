@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
@@ -27,12 +29,16 @@ public class JobSeekerController {
 		return this.jobSeekerService.getAll();
 	}
 	@PostMapping("/save")
-	public Result save(JobSeeker jobSeeker) {
+	public Result save(@RequestBody JobSeeker jobSeeker) {
 		return this.jobSeekerService.save(jobSeeker);
 	}
+	@PostMapping("/update")
+	public Result update(@RequestBody JobSeeker jobSeeker) {
+		return this.jobSeekerService.update(jobSeeker);
+	}
 	@PostMapping("/delete")
-	public Result delete(JobSeeker jobSeeker) {
-		return this.jobSeekerService.delete(jobSeeker);
+	public Result delete(@RequestParam String jobSeekerId) {
+		return this.jobSeekerService.delete(jobSeekerId);
 	}
 	@GetMapping("/findByIdentityNumber")
 	public JobSeeker findByIdentityNumber(String identityNumber) {

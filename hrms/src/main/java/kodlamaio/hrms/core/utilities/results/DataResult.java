@@ -13,6 +13,7 @@ public class DataResult<T> extends Result { //DataResult ın alacağı veri tipi
 		super(success);
 		this.data=data;
 	}
+
 	public T getData() {
 		return this.data;
 	}

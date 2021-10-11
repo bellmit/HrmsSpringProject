@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
-
+import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.dtos.JobSeekerWithCvDto;
 
 public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integer>{
@@ -20,6 +20,8 @@ public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integ
 	List<JobSeekerWithCvDto> jobSeekerWithCvDto(Integer id);
 	
 	CurriculumVitae getAllByJobSeekerId(int jobSeekerId);
+	
+	CurriculumVitae findByJobSeekerId(JobSeeker jobSeeker);
 	
 	
 	

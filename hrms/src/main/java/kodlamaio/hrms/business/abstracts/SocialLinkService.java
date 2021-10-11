@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.dtos.SocialLinkDto;
 public interface SocialLinkService {
 	Result add(SocialLinkDto socialLinkDto);
 	DataResult<List<SocialLinkDto>> getByJobSeekerId(int jobSeekerId);
+	DataResult<List<SocialLinkDto>> getAll();
 }

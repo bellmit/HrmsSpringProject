@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -38,7 +39,8 @@ public class Employer extends User {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@OneToMany(mappedBy="employer",fetch = FetchType.LAZY)
+	@OneToMany(/*mappedBy="employer",fetch = FetchType.LAZY*/)
+	@JoinColumn(name="job_advertisement_id")
 	private List<JobAdvertisement> jobAdvertisements;
 	
 }

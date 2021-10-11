@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -33,7 +35,7 @@ public class CurriculumVitae {
 	@Column(name="cv_id")
 	private int cvId;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne()
 	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker; 
 	
@@ -54,7 +56,7 @@ public class CurriculumVitae {
 	private List<Image> images;
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="curriculumVitae")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "curriculumVitae")
 	private List<School> schools;
 	
 	@JsonIgnore

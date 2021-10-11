@@ -14,9 +14,11 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 
 public class User {
+	
 	@Id
-	@GeneratedValue
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "user_Sequence")
+	@SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
 	private int id;
 	
 	@Column(name="email",unique=true)

@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface JobSeekerService extends UserService{
 	Result save(JobSeeker jobSeeker);
-	Result delete(JobSeeker jobSeeker);
+	Result update(JobSeeker jobSeeker);
+	Result delete(String jobSeekerId);
 	DataResult<List<JobSeeker>> getAll();
 	JobSeeker findByIdentityNumber(String identityNumber);
 }

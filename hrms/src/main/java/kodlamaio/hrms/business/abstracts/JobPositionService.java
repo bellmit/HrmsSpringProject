@@ -6,6 +6,7 @@ import kodlamaio.hrms.entities.concretes.JobPosition;
 
 public interface JobPositionService extends UserService{
 	DataResult<List<JobPosition>> getAll(); //hangi türde veri döndüreceksem <> generik tipinde <> içerisine yazdım
-	Result save(String jobPosition);
+	Result save(JobPosition jobPosition);
 	JobPosition  getById(Integer id);
+	
 }
