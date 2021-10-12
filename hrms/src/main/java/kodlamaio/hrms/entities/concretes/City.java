@@ -20,21 +20,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="cities")
+@Table(name = "cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","jobAdvertisements"})
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "jobAdvertisements" })
 //@PrimaryKeyJoinColumn(name = "city_id")
 public class City {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="city_id")
+	@Column(name = "city_id")
 	private int cityId;
-	 
-	@Column(name="city_name")
+
+	@Column(name = "city_name")
 	private String cityName;
-	
-	@OneToMany(mappedBy="city",fetch = FetchType.LAZY)
-	private List<JobAdvertisement> jobAdvertisements;  
+
+	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+	private List<JobAdvertisement> jobAdvertisements;
 }

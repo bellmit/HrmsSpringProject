@@ -10,18 +10,19 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
 @Data
-@Table(name="verification")
+@Table(name = "verification")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Verification {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="verification_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "verification_id")
 	private int verificationId;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private boolean email;
-	
+
 }

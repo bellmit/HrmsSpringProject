@@ -16,17 +16,16 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="system_users")
+@Table(name = "system_users")
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "system_user_id")
 
-public class SystemUser extends User{
-	
-	
-	@Column(name="first_name")
+public class SystemUser extends User {
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
 }

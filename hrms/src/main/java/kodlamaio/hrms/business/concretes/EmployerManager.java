@@ -20,46 +20,46 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.concretes.User;
 
 @Service
-public class EmployerManager implements EmployerService{
-	
+public class EmployerManager implements EmployerService {
+
 	private EmployerDao employerDao;
-	
+
 	@Autowired
 	public EmployerManager(EmployerDao employerDao) {
 		super();
-		this.employerDao=employerDao;
+		this.employerDao = employerDao;
 	}
-	
+
 	@Override
 	public DataResult<List<Employer>> getAll() {
 		List<Employer> employerList = this.employerDao.findAll();
-		if(!CollectionUtils.isEmpty(employerList)) {
+		if (!CollectionUtils.isEmpty(employerList)) {
 			return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "İş verenler listelendi");
-		}else{
+		} else {
 			return new ErrorDataResult<List<Employer>>("Veri bulunamadı.");
 		}
 	}
-	
+
 	@Override
 	public Result save(Employer employer) {
 
-		if(!existEmployerByCompanyName(employer)){
+		if (!existEmployerByCompanyName(employer)) {
 			employerDao.save(employer);
 			return new SuccessResult("İş veren kaydedildi");
 		}
-		return new ErrorDataResult<>(employer.getCompanyName() + " isimli İş veren sistemde kayıtlı olduğundan işlem başarısız oldu!");
-			
+		return new ErrorDataResult<>(
+				employer.getCompanyName() + " isimli İş veren sistemde kayıtlı olduğundan işlem başarısız oldu!");
+
 	}
 
 	private boolean existEmployerByCompanyName(Employer employer) {
 		return employerDao.findByCompanyName(employer.getCompanyName()) != null;
-		
+
 	}
 
 	@Override
 	public Employer findByEmail(String email) {
-		return this.employerDao.findByEmail(email);		
+		return this.employerDao.findByEmail(email);
 	}
-	
 
 }

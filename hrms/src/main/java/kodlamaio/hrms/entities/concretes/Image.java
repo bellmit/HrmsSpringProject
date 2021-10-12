@@ -20,31 +20,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
 @Data
-@Table(name="Images")
+@Table(name = "Images")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="image_id")
+	@Column(name = "image_id")
 	private int imageId;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name="uploaded_date")
-	private LocalDate uploadedDate=LocalDate.now();
-	
+
+	@Column(name = "uploaded_date")
+	private LocalDate uploadedDate = LocalDate.now();
+
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="job_seeker_id")
+	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
-	
-	@JoinColumn(name="cv_id")
+
+	@JoinColumn(name = "cv_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CurriculumVitae curriculumVitae;
-	
-	
+
 }

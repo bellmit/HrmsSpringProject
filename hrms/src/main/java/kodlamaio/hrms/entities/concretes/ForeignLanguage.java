@@ -21,29 +21,28 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="foreign_languages")
+@Table(name = "foreign_languages")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
 public class ForeignLanguage {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="foreign_language_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "foreign_language_id")
 	private int foreignLanguageId;
-	
-	@Column(name="flanguage_name")
+
+	@Column(name = "flanguage_name")
 	private String flanguageName;
-	
-	@Column(name="level")
+
+	@Column(name = "level")
 	private int level;
-	
-	@JoinColumn(name="job_seeker_id")
+
+	@JoinColumn(name = "job_seeker_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private JobSeeker jobSeeker;
-	
-	
-	@JoinColumn(name="cv_id")
+
+	@JoinColumn(name = "cv_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CurriculumVitae curriculumVitae;
-	
+
 }

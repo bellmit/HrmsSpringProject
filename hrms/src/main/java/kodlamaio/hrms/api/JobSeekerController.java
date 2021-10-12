@@ -19,31 +19,35 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 @RequestMapping("/api/JobSeeker")
 public class JobSeekerController {
 	private JobSeekerService jobSeekerService;
-	
+
 	@Autowired
-	public JobSeekerController (JobSeekerService jobSeekerService) {
-		this.jobSeekerService=jobSeekerService;
+	public JobSeekerController(JobSeekerService jobSeekerService) {
+		this.jobSeekerService = jobSeekerService;
 	}
+
 	@GetMapping("/getall")
-	public DataResult<List<JobSeeker>> getAll(){
+	public DataResult<List<JobSeeker>> getAll() {
 		return this.jobSeekerService.getAll();
 	}
+
 	@PostMapping("/save")
 	public Result save(@RequestBody JobSeeker jobSeeker) {
 		return this.jobSeekerService.save(jobSeeker);
 	}
+
 	@PostMapping("/update")
 	public Result update(@RequestBody JobSeeker jobSeeker) {
 		return this.jobSeekerService.update(jobSeeker);
 	}
+
 	@PostMapping("/delete")
 	public Result delete(@RequestParam String jobSeekerId) {
 		return this.jobSeekerService.delete(jobSeekerId);
 	}
+
 	@GetMapping("/findByIdentityNumber")
 	public JobSeeker findByIdentityNumber(String identityNumber) {
 		return this.jobSeekerService.findByIdentityNumber(identityNumber);
 	}
-	
 
 }

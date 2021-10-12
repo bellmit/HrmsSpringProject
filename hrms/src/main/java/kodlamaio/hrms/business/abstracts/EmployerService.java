@@ -9,5 +9,6 @@ import kodlamaio.hrms.entities.concretes.JobPosition;
 
 public interface EmployerService extends UserService {
 	DataResult<List<Employer>> getAll();
+
 	Result save(Employer employer);
 }

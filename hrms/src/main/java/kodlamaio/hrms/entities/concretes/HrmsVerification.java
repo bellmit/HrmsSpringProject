@@ -15,20 +15,20 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@Table(name="hrms_verification")
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
+@Table(name = "hrms_verification")
 public class HrmsVerification {
 	@Id
-	@Column(name="verification_id")
+	@Column(name = "verification_id")
 	private int id;
-	
-	@Column(name="employer_id")
+
+	@Column(name = "employer_id")
 	private int employerId;
-	
-	@Column(name="system_user_id")
+
+	@Column(name = "system_user_id")
 	private int personelId;
-	
-	@Column(name="is_verify")
+
+	@Column(name = "is_verify")
 	private boolean isVerify;
 
 }

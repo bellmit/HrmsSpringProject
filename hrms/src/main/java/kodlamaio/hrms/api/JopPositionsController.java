@@ -19,8 +19,9 @@ import kodlamaio.hrms.entities.concretes.JobPosition;
 @RestController
 @RequestMapping("/api/JobPosition")
 public class JopPositionsController {
-	
+
 	private JobPositionService jobPositionService;
+
 	@Autowired
 	public JopPositionsController(JobPositionService jobPositionService) {
 		super();
@@ -28,17 +29,17 @@ public class JopPositionsController {
 	}
 
 	@GetMapping("/getall")
-	public DataResult<List<JobPosition>> getAll(){
+	public DataResult<List<JobPosition>> getAll() {
 		return this.jobPositionService.getAll();
-		
+
 	}
-	
+
 	@GetMapping("/{jobId}")
-	public JobPosition getById(@PathVariable("jobId") Integer jobId){
+	public JobPosition getById(@PathVariable("jobId") Integer jobId) {
 		return this.jobPositionService.getById(jobId);
-		
+
 	}
-	
+
 	@PostMapping("/save")
 	public Result save(@RequestBody JobPosition jobPosition) {
 		return this.jobPositionService.save(jobPosition);

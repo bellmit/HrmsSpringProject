@@ -17,23 +17,26 @@ import kodlamaio.hrms.entities.concretes.SystemUser;
 @RequestMapping("/api/SystemUserController")
 public class SystemUserController {
 	private SystemUserService systemUserService;
-	
+
 	@Autowired
 	public SystemUserController(SystemUserService systemUserService) {
 		super();
-		this.systemUserService=systemUserService;
+		this.systemUserService = systemUserService;
 	}
+
 	@GetMapping("/getall")
-	public DataResult<List<SystemUser>> getAll(){
+	public DataResult<List<SystemUser>> getAll() {
 		return this.systemUserService.getAll();
 	}
+
 	@PostMapping("/add")
 	public Result add(SystemUser systemUser) {
 		return this.systemUserService.add(systemUser);
 	}
+
 	@PostMapping("/delete")
 	public Result delete(SystemUser systemUser) {
 		return this.systemUserService.delete(systemUser);
 	}
-	
+
 }

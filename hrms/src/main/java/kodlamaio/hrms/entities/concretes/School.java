@@ -27,42 +27,38 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@Table(name="schools")
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
+@Table(name = "schools")
 public class School {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="school_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "school_id")
 	private int schoolId;
-	
-	@Column(name="school_name")
+
+	@Column(name = "school_name")
 	private String schoolName;
-	
-	@Column(name="departmant")
+
+	@Column(name = "departmant")
 	private String departmant;
-	
-	@Column(name="startDate")
+
+	@Column(name = "startDate")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
-	
-	@Column(name="is_graduated")
-	private boolean isGraduated=true;
-	
-	@Column(name="graduation_year")
+
+	@Column(name = "is_graduated")
+	private boolean isGraduated = true;
+
+	@Column(name = "graduation_year")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date graduationYear;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="job_seeker_id")
+	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
-	
+
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cv_id")
+	@JoinColumn(name = "cv_id")
 	private CurriculumVitae curriculumVitae;
-	
-	
-	
-	
-	
+
 }

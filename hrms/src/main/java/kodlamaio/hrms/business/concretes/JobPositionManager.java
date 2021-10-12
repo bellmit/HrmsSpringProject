@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
@@ -22,10 +21,10 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.concretes.User;
 
 @Service
-public class JobPositionManager implements JobPositionService{
-	
+public class JobPositionManager implements JobPositionService {
+
 	private JobPositionDao jobPositionDao;
-	
+
 	@Autowired
 	public JobPositionManager(JobPositionDao jobPositionDao) {
 		super();
@@ -34,28 +33,30 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
-		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"Iş pozisyonları listelendi");
-		}
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(), "Iş pozisyonları listelendi");
+	}
 
 	@Override
 	public JobPosition getById(Integer id) {
 		// TODO Auto-generated method stub
 		Optional<JobPosition> jobPosition = this.jobPositionDao.findById(id);
-		return jobPosition.isPresent() ? jobPosition.get() : null ;
+		return jobPosition.isPresent() ? jobPosition.get() : null;
 	}
 
 	@Override
 	public Result save(JobPosition jobPosition) {
-		if(!existPositionByTitle(jobPosition)) {
+		if (!existPositionByTitle(jobPosition)) {
 			jobPositionDao.save(jobPosition);
 			return new SuccessResult("Pozisyon kaydedildi");
 		}
-		return new ErrorDataResult<>(jobPosition.getTitle()+ " isimli pozisyon sistemde kayıtlı olduğu için işlem başarısız oldu!");
-		
+		return new ErrorDataResult<>(
+				jobPosition.getTitle() + " isimli pozisyon sistemde kayıtlı olduğu için işlem başarısız oldu!");
+
 	}
+
 	private boolean existPositionByTitle(JobPosition jobPosition) {
-		
-		return jobPositionDao.findByTitle(jobPosition.getTitle())!=null;
+
+		return jobPositionDao.findByTitle(jobPosition.getTitle()) != null;
 	}
 
 	@Override
@@ -63,8 +64,5 @@ public class JobPositionManager implements JobPositionService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 
 }

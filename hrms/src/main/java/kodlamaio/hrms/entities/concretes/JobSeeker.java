@@ -27,43 +27,40 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="job_seekers")
+@Table(name = "job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@PrimaryKeyJoinColumn(name="job_seeker_id",referencedColumnName = "id")
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
+@PrimaryKeyJoinColumn(name = "job_seeker_id", referencedColumnName = "id")
 
 public class JobSeeker extends User {
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="identity_number",unique=true)
+
+	@Column(name = "identity_number", unique = true)
 	private String identityNumber;
-	
-	@Column(name="birth_of_year")
+
+	@Column(name = "birth_of_year")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birtOfYear;
 
-	@Column(name="is_verify")
-	private boolean isVerify; 
-	
+	@Column(name = "is_verify")
+	private boolean isVerify;
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="cvId")
+	@JoinColumn(name = "cvId")
 	private CurriculumVitae curriculumVitae;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<School> schools;
-	
-	/*@OneToMany(mappedBy="jobSeeker")
-	private List<SocialLink> socialLinks;*/
-	
-	
-	
-	
-	
+
+	/*
+	 * @OneToMany(mappedBy="jobSeeker") private List<SocialLink> socialLinks;
+	 */
+
 }

@@ -20,40 +20,43 @@ import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.dtos.SchoolDto;
 
 @Service
-public class JobSeekerManager implements JobSeekerService{
+public class JobSeekerManager implements JobSeekerService {
 	private JobSeekerDao jobSeekerDao;
 	private CurriculumVitaeDao curriculumVitaeDao;
-	
+
 	@Autowired
-	public JobSeekerManager(JobSeekerDao jobSeekerDao,CurriculumVitaeDao curriculumVitaeDao) {
+	public JobSeekerManager(JobSeekerDao jobSeekerDao, CurriculumVitaeDao curriculumVitaeDao) {
 		super();
-		this.jobSeekerDao=jobSeekerDao;
-		this.curriculumVitaeDao=curriculumVitaeDao;
+		this.jobSeekerDao = jobSeekerDao;
+		this.curriculumVitaeDao = curriculumVitaeDao;
 	}
+
 	@Override
 	public Result save(JobSeeker jobSeeker) {
-		if(!isExistJobSeekerWithIdentityNumberOrEmail(jobSeeker)) {
+		if (!isExistJobSeekerWithIdentityNumberOrEmail(jobSeeker)) {
 			jobSeekerDao.save(jobSeeker);
 			return new SuccessResult("Aday eklendi");
 		}
-		return new ErrorResult("Kaydedilemedi, sistemde aynı kimlik numarası veya email ile kayıtlı bir kullanıcı mevcuttur.");
+		return new ErrorResult(
+				"Kaydedilemedi, sistemde aynı kimlik numarası veya email ile kayıtlı bir kullanıcı mevcuttur.");
 	}
 
 	private boolean isExistJobSeekerWithIdentityNumberOrEmail(JobSeeker jobSeeker) {
-		
-		return this.jobSeekerDao.findByIdentityNumberOrEmail(jobSeeker.getIdentityNumber(), jobSeeker.getEmail()) != null;
+
+		return this.jobSeekerDao.findByIdentityNumberOrEmail(jobSeeker.getIdentityNumber(),
+				jobSeeker.getEmail()) != null;
 	}
-	
+
 	private boolean isExistJobSeekerWithEmail(JobSeeker jobSeeker) {
-		
+
 		return findByEmail(jobSeeker.getEmail()) != null;
 	}
 
 	private boolean isExistJobSeekerWithIdentityNumber(JobSeeker jobSeeker) {
-		
-		return findByIdentityNumber(jobSeeker.getIdentityNumber())!=null;
+
+		return findByIdentityNumber(jobSeeker.getIdentityNumber()) != null;
 	}
-	
+
 	@Override
 	public Result delete(String jobSeekerId) {
 		Optional<JobSeeker> jobSeeker = jobSeekerDao.findById(Integer.valueOf(jobSeekerId));
@@ -61,8 +64,7 @@ public class JobSeekerManager implements JobSeekerService{
 			this.jobSeekerDao.delete(jobSeeker.get());
 			return new SuccessResult("Aday silindi");
 		}
-		return new ErrorResult(
-				"Silinemedi, sistemde " + jobSeekerId + " ID'li  bir kullanıcı mevcut değildir.");
+		return new ErrorResult("Silinemedi, sistemde " + jobSeekerId + " ID'li  bir kullanıcı mevcut değildir.");
 	}
 
 	@Override
@@ -77,7 +79,7 @@ public class JobSeekerManager implements JobSeekerService{
 
 	@Override
 	public DataResult<List<JobSeeker>> getAll() {
-		return new DataResult<List<JobSeeker>>(jobSeekerDao.findAll(),true,"Adaylar listelendi");
+		return new DataResult<List<JobSeeker>>(jobSeekerDao.findAll(), true, "Adaylar listelendi");
 	}
 
 	@Override
@@ -85,8 +87,5 @@ public class JobSeekerManager implements JobSeekerService{
 		this.jobSeekerDao.save(jobSeeker);
 		return new SuccessResult("Updated datas");
 	}
-	
-	
-
 
 }

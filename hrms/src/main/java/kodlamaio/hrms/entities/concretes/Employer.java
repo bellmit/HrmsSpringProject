@@ -23,24 +23,24 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="employers")
+@Table(name = "employers")
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "employer_id")
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","jobAdvertisements"})
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "jobAdvertisements" })
 public class Employer extends User {
-	
-	@Column(name="company_name")
+
+	@Column(name = "company_name")
 	private String companyName;
-	
-	@Column(name="web_site")
+
+	@Column(name = "web_site")
 	private String webSite;
-	
-	@Column(name="phone_number")
+
+	@Column(name = "phone_number")
 	private String phoneNumber;
-	
-	@OneToMany(/*mappedBy="employer",fetch = FetchType.LAZY*/)
-	@JoinColumn(name="job_advertisement_id")
+
+	@OneToMany()
+	@JoinColumn(name = "job_advertisement_id")
 	private List<JobAdvertisement> jobAdvertisements;
-	
+
 }

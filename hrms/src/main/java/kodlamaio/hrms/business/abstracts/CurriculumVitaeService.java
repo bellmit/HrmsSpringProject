@@ -9,15 +9,15 @@ import kodlamaio.hrms.entities.dtos.JobSeekerWithCvDto;
 
 public interface CurriculumVitaeService {
 	Result save(CurriculumVitae curriculumVitae);
-	
+
 	DataResult<List<CurriculumVitae>> getAll();
-	
+
 	DataResult<List<JobSeekerWithCvDto>> JobSeekerWithCvDto(Integer id);
-	
+
 	DataResult<CurriculumVitae> getAllByJobSeekerId(int jobSeekerId);
-	
+
 	DataResult<CurriculumVitae> getAllJobSeekerIdSortedWithGraduationYear(String ascOrDesc);
-	
+
 	DataResult<CurriculumVitae> getAllJobSeekerIdSortedWithEndedDate(String ascOrDesc);
-	
+
 }

@@ -13,22 +13,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@Table(name="mernis_verification")
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
+@Table(name = "mernis_verification")
 public class MernisVerification {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="verification_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "verification_id")
 	private int id;
-	
-	@Column(name="job_seeker_id")
+
+	@Column(name = "job_seeker_id")
 	private int seekerId;
-	
-	@Column(name="is_verify")
+
+	@Column(name = "is_verify")
 	private boolean isVerify;
 
 }

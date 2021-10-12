@@ -20,25 +20,25 @@ import kodlamaio.hrms.entities.concretes.User;
 @RequestMapping("/api/Employer")
 public class EmployerController {
 	private EmployerService employerService;
-	
+
 	@Autowired
-	public EmployerController (EmployerService employerService) {
+	public EmployerController(EmployerService employerService) {
 		super();
-		this.employerService=employerService;
+		this.employerService = employerService;
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<Employer>>getAll(){
+	public DataResult<List<Employer>> getAll() {
 		return this.employerService.getAll();
 	}
-	
+
 	@PostMapping("/save")
 	public Result save(@RequestBody Employer employer) {
 		return this.employerService.save(employer);
 	}
-	
+
 	@GetMapping("/findByEmail")
 	public User findByEmail(String email) {
-		return this.employerService.findByEmail(email);		
+		return this.employerService.findByEmail(email);
 	}
 }

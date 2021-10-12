@@ -19,30 +19,30 @@ import kodlamaio.hrms.entities.dtos.SchoolDto;
 public class SchoolController {
 	@Autowired
 	private SchoolService schoolService;
-	
 
 	public SchoolController(SchoolService schoolService) {
 		super();
 		this.schoolService = schoolService;
 	}
+
 	@GetMapping("/getBySchoolNameStartsWith")
-	public DataResult<List<SchoolDto>> getBySchoolNameStartsWith(String schoolName){
-		return this.schoolService.getBySchoolNameStartsWith(schoolName);	
+	public DataResult<List<SchoolDto>> getBySchoolNameStartsWith(String schoolName) {
+		return this.schoolService.getBySchoolNameStartsWith(schoolName);
 	}
-	
+
 	@GetMapping("getByJobSeekerId")
-	public DataResult<List<School>> getByJobSeekerId(int jobSeekerId)
-	{
+	public DataResult<List<School>> getByJobSeekerId(int jobSeekerId) {
 		return this.schoolService.getByJobSeekerId(jobSeekerId);
 	}
+
 	@PostMapping("/save")
 	public Result save(@RequestBody SchoolDto schoolDto) {
 		return this.schoolService.save(schoolDto);
 	}
+
 	@GetMapping("/getAll")
-	public DataResult<List<SchoolDto>>getAll(){
+	public DataResult<List<SchoolDto>> getAll() {
 		return this.schoolService.getAll();
 	}
-	
-	
+
 }

@@ -15,19 +15,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="social_links")
+@Table(name = "social_links")
 public class SocialLink {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="social_url")
+
+	@Column(name = "social_url")
 	@NotNull
 	private String socialUrl;
-	
+
 	@ManyToOne()
-	@JoinColumn(name="job_seeker_id")
+	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
-	
+
 }

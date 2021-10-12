@@ -20,27 +20,26 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
-@Table(name="programing_languages")
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
+@Table(name = "programing_languages")
 public class ProgramingLanguage {
-		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		@Column(name="prog_language_id")
-		private int progLanguageId;
-		
-		@Column(name="planguage_name")
-		private String planguageName;
-		
-		@Column(name="plevel")
-		private int plevel;
-		
-		@JoinColumn(name="job_seeker_id")
-		@ManyToOne(fetch = FetchType.LAZY)
-		private JobSeeker jobSeeker;
-		
-		@JoinColumn(name="cv_id")
-		@ManyToOne(fetch = FetchType.LAZY)
-		private CurriculumVitae curriculumVitae;
-		
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "prog_language_id")
+	private int progLanguageId;
 
+	@Column(name = "planguage_name")
+	private String planguageName;
+
+	@Column(name = "plevel")
+	private int plevel;
+
+	@JoinColumn(name = "job_seeker_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private JobSeeker jobSeeker;
+
+	@JoinColumn(name = "cv_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private CurriculumVitae curriculumVitae;
+
+}

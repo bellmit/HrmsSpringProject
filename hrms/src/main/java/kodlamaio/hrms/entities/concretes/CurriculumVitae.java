@@ -25,54 +25,51 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="Curriculum_vitae")
+@Table(name = "Curriculum_vitae")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"HybernateLazyInitializer","handler","products"})
+@JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
 public class CurriculumVitae {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cv_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cv_id")
 	private int cvId;
-	
+
 	@OneToOne()
-	@JoinColumn(name="job_seeker_id")
-	private JobSeeker jobSeeker; 
-	
-	//@Column(name="image")
-	//private String imageLink;
-	
-	@Column(name="githup_link")
+	@JoinColumn(name = "job_seeker_id")
+	private JobSeeker jobSeeker;
+
+	@Column(name = "githup_link")
 	private String githupLink;
-	
-	@Column(name="linkedln_link")
+
+	@Column(name = "linkedln_link")
 	private String linkedlnLink;
-	
-	@Column(name="cover_letter")
+
+	@Column(name = "cover_letter")
 	private String coverLetter;
-	
+
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "curriculumVitae")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<Image> images;
-	
+
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "curriculumVitae")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<School> schools;
-	
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<ForeignLanguage> foreignLanguages;
-	
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<ProgramingLanguage> programingLanguages;
-	
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<JobExperience> jobExperiences;
-	
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<Image> imageUrls;
-	
+
 }
