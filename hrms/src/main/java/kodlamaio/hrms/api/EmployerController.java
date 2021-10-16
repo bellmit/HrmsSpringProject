@@ -37,8 +37,8 @@ public class EmployerController {
 		return this.employerService.save(employer);
 	}
 
-	@GetMapping("/findByEmail")
+	/*@GetMapping("/findByEmail")
 	public User findByEmail(String email) {
 		return this.employerService.findByEmail(email);
-	}
+	}*/
 }

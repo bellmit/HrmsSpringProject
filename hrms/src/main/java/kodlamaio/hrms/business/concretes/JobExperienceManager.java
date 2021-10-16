@@ -10,14 +10,17 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstarcts.JobExperienceDao;
 import kodlamaio.hrms.dataAccess.abstarcts.JobSeekerDao;
+import kodlamaio.hrms.entities.concretes.ForeignLanguage;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.concretes.School;
 import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
 import kodlamaio.hrms.entities.dtos.JobExperienceDto;
 
 @Service
@@ -37,14 +40,16 @@ public class JobExperienceManager implements JobExperienceService {
 	@Override
 	public Result save(JobExperienceDto jobExperienceDto) {
 		Optional<JobSeeker> jobSeeker = jobSeekerDao.findById(jobExperienceDto.getJobSeekerId());
-		JobExperience jobExperience = modelMapper.map(jobExperienceDto, JobExperience.class);
-		if (jobExperience.isStillWork() != false) {
-			jobExperienceDto.setEndedDate(null);
-		}
-		JobExperience savedJobExperience = this.jobExperienceDao.save(jobExperience);
-		return new SuccessDataResult(modelMapper.map(savedJobExperience, JobExperienceDto.class));
+		if(jobSeeker.isPresent()) {
+			JobExperience jobExperience = modelMapper.map(jobExperienceDto, JobExperience.class);
+			if (jobExperience.isStillWork() != false) {
+				jobExperience.setEndedDate(null);
+			}
+			JobExperience savedJobExperience = this.jobExperienceDao.save(jobExperience);
+			return new SuccessDataResult(modelMapper.map(savedJobExperience, JobExperienceDto.class), "Deneyiminiz başarı ile kaydedildi");
+		}	
+		return new ErrorDataResult<>("id nosu "+jobExperienceDto.getJobSeekerId() + " olan kişi olmadığı için kaydedilmedi");
 	}
-
 	@Override
 	public DataResult<List<JobExperienceDto>> getAll() {
 		List<JobExperience> jobExperiences = this.jobExperienceDao.findAll();

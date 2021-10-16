@@ -47,7 +47,7 @@ public class CurriculumVitaeController {
 		return this.curriculumVitaeService.getAllByJobSeekerId(jobSeekerId);
 	}
 
-	@GetMapping("/getAllJobSeekerIdSortedWithGraduationYear")
+	/*@GetMapping("/getAllJobSeekerIdSortedWithGraduationYear")
 	public DataResult<CurriculumVitae> getAllJobSeekerIdSortedWithGraduationYear(String ascOrDesc) {
 		return this.curriculumVitaeService.getAllJobSeekerIdSortedWithGraduationYear(ascOrDesc);
 	}
@@ -55,6 +55,6 @@ public class CurriculumVitaeController {
 	@GetMapping("/getAllJobSeekerIdSortedWithEndedDate")
 	public DataResult<CurriculumVitae> getAllJobSeekerIdSortedWithEndedDate(String ascOrDesc) {
 		return this.curriculumVitaeService.getAllJobSeekerIdSortedWithEndedDate(ascOrDesc);
-	}
+	}*/
 
 }

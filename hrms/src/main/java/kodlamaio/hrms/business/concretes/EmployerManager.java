@@ -42,20 +42,21 @@ public class EmployerManager implements EmployerService {
 
 	@Override
 	public Result save(Employer employer) {
-
-		if (!existEmployerByCompanyName(employer)) {
-			employerDao.save(employer);
-			return new SuccessResult("İş veren kaydedildi");
-		}
-		return new ErrorDataResult<>(
-				employer.getCompanyName() + " isimli İş veren sistemde kayıtlı olduğundan işlem başarısız oldu!");
+		
+		employerDao.save(employer);
+		return new SuccessResult("İş veren kaydedildi");
 
 	}
 
-	private boolean existEmployerByCompanyName(Employer employer) {
-		return employerDao.findByCompanyName(employer.getCompanyName()) != null;
-
-	}
+	/*
+	 * if (!existEmployerByCompanyName(employer)) { } return new ErrorDataResult<>(
+	 * employer.getCompanyName() +
+	 * " isimli İş veren sistemde kayıtlı olduğundan işlem başarısız oldu!"); }
+	 * private boolean existEmployerByCompanyName(Employer employer) { return
+	 * employerDao.findByCompanyName(employer.getCompanyName()) != null;
+	 * 
+	 * }
+	 */
 
 	@Override
 	public Employer findByEmail(String email) {

@@ -11,7 +11,7 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 
 public interface JobSeekerDao extends JpaRepository<JobSeeker,Integer>{
 
-	JobSeeker findByIdentityNumber(String identityNumber);//Geri dönerken bize jobSeeker döndürecek(tipi).yoksa null döndürecek
+	JobSeeker findByIdentityNumber(String identityNumber);
 	
 	JobSeeker findByEmail(String email);
 	
@@ -19,7 +19,6 @@ public interface JobSeekerDao extends JpaRepository<JobSeeker,Integer>{
 	
 	JobSeeker getById(int id);
 	
-	//JobSeeker getAll(String identityNumber);
 	
 
 

@@ -10,31 +10,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.ForeignLanguageService;
+import kodlamaio.hrms.business.abstracts.ProgramingLanguageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
+import kodlamaio.hrms.entities.dtos.ProgramingLanguageDto;
 
 @RestController
-@RequestMapping("/api/ForeignLanguage")
-public class ForeignLanguageController {
-	private ForeignLanguageService foreignLanguageService;
+@RequestMapping("/api/ProgramingLanguage")
+public class ProgramingLanguageController {
+	private ProgramingLanguageService programingLanguageService;
 
 	@Autowired
-	public ForeignLanguageController(ForeignLanguageService foreignLanguageService) {
-		this.foreignLanguageService = foreignLanguageService;
+	public ProgramingLanguageController(ProgramingLanguageService programingLanguageService) {
+		this.programingLanguageService = programingLanguageService;
+	}
+	@PostMapping("/save")
+	public Result save(@RequestBody ProgramingLanguageDto programingLanguageDto) {
+		return this.programingLanguageService.save(programingLanguageDto);
 	}
 
-	@PostMapping("/save")
-	public Result save(@RequestBody ForeignLanguageDto foreignLanguageDto) {
-		return this.foreignLanguageService.save(foreignLanguageDto);
+	@GetMapping("/{jobSeekerId}")
+	public DataResult<List<ProgramingLanguageDto>> getByJobSeekerId(@PathVariable("jobSeekerId") int jobSeekerId){
+		return this.programingLanguageService.getByJobSeekerId(jobSeekerId);
 	}
 	
-	@GetMapping("/{jobSeekerId}")
-	public DataResult<List<ForeignLanguageDto>> getByJobSeekerId(@PathVariable("jobSeekerId") int jobSeekerId){
-		return this.foreignLanguageService.getByJobSeekerId(jobSeekerId);
-	}
-
+	
 	
 }

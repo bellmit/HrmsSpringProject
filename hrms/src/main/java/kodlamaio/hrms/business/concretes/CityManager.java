@@ -1,0 +1,67 @@
+package kodlamaio.hrms.business.concretes;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlamaio.hrms.business.abstracts.CityService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstarcts.CityDao;
+import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.ForeignLanguage;
+import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.entities.concretes.School;
+import kodlamaio.hrms.entities.dtos.CityDto;
+import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
+import kodlamaio.hrms.entities.dtos.JobExperienceDto;
+import kodlamaio.hrms.entities.dtos.SchoolDto;
+import lombok.Data;
+import net.bytebuddy.asm.Advice.This;
+
+@Service
+@Data
+public class CityManager implements CityService {
+	private CityDao cityDao;
+	private final ModelMapper modelMapper;
+
+	@Autowired
+	public CityManager(CityDao cityDao, ModelMapper modelMapper) {
+		super();
+		this.cityDao = cityDao;
+		this.modelMapper = modelMapper;
+	}
+
+	@Override
+	public Result save(CityDto cityDto) {
+		City city = modelMapper.map(cityDto, City.class);
+		if (!existCity(cityDto.getCityName())) {
+			City savedCity = this.cityDao.save(city);
+			return new SuccessDataResult(modelMapper.map(savedCity, CityDto.class), "Başarılı şekilde kaydedildi");
+		} else {
+			return new ErrorDataResult(cityDto.getCityName(), "kayıtlı olduğu için kaydedilemedi");
+		}
+	}
+
+	private boolean existCity(String city) {
+		return cityDao.findByCityName(city) != null;
+	}
+
+	@Override
+	public DataResult<List<CityDto>> getAll() {
+		List<City> cities = this.cityDao.findAll();
+		List<CityDto> dtos = cities.stream().map(city -> modelMapper.map(city, CityDto.class))
+				.collect(Collectors.toList());
+		return new SuccessDataResult<List<CityDto>>(dtos);
+	}
+
+}

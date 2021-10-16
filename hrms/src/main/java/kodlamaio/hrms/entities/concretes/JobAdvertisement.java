@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 
 public class JobAdvertisement {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "job_advertisement_id")
 	private int jobAdvertisementId;
 
