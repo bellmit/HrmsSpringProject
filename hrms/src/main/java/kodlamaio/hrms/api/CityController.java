@@ -14,8 +14,8 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.CityDto;
 
-@RequestMapping
-@RestController("/api/City")
+@RestController
+@RequestMapping("/api/City")
 public class CityController {
 	private CityService cityService;
 
@@ -25,12 +25,11 @@ public class CityController {
 		this.cityService = cityService;
 	}
 
-	@PostMapping
+	@PostMapping("/save")
 	public Result save(@RequestBody CityDto cityDto) {
 		return this.cityService.save(cityDto);
 	}
-
-	@GetMapping
+	@GetMapping("/getAll")
 	public DataResult<List<CityDto>> getAll() {
 		return this.cityService.getAll();
 	}

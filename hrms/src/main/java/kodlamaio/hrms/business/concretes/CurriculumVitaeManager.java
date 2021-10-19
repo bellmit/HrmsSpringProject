@@ -34,26 +34,15 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
-	public Result save(CurriculumVitae curriculumVitae) {
-		Optional<JobSeeker> jobSeeker = jobSeekerDao.findById(curriculumVitae.getJobSeeker().getId());
-		if (jobSeeker.isPresent()) {
-			curriculumVitaeDao.save(curriculumVitae);
-			return new SuccessResult("Başarılı şekilde cv kaydedildi");
-		}
-
-		return new ErrorResult(curriculumVitae.getJobSeeker().getId() + "nolu kişi bulunamadı");
-	}
-
-	@Override
 	public DataResult<List<CurriculumVitae>> getAll() {
 		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.findAll(), "Datas are listed");
 
 	}
 
 	@Override
-	public DataResult<CurriculumVitae> getAllByJobSeekerId(int jobSeekerId) {
-		this.curriculumVitae = curriculumVitaeDao.getAllByJobSeekerId(jobSeekerId);
-		return new SuccessDataResult<>(curriculumVitaeDao.getAllByJobSeekerId(jobSeekerId), "cv başarıyla getirildi");
+	public DataResult<CurriculumVitae> getByJobSeekerId(int jobSeekerId) {
+		this.curriculumVitae = curriculumVitaeDao.getByJobSeekerId(jobSeekerId);
+		return new SuccessDataResult<>(curriculumVitaeDao.getByJobSeekerId(jobSeekerId), "cv başarıyla getirildi");
 	}
 
 	@Override

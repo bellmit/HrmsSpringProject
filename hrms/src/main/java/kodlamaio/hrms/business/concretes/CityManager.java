@@ -16,12 +16,15 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstarcts.CityDao;
+import kodlamaio.hrms.dataAccess.abstarcts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.CoverLetter;
 import kodlamaio.hrms.entities.concretes.ForeignLanguage;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.entities.concretes.School;
 import kodlamaio.hrms.entities.dtos.CityDto;
+import kodlamaio.hrms.entities.dtos.CoverLetterDto;
 import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
 import kodlamaio.hrms.entities.dtos.JobExperienceDto;
 import kodlamaio.hrms.entities.dtos.SchoolDto;
@@ -33,15 +36,16 @@ import net.bytebuddy.asm.Advice.This;
 public class CityManager implements CityService {
 	private CityDao cityDao;
 	private final ModelMapper modelMapper;
+	private JobSeekerDao jobSeekerDao;
 
 	@Autowired
-	public CityManager(CityDao cityDao, ModelMapper modelMapper) {
-		super();
+	public CityManager(CityDao cityDao, ModelMapper modelMapper,JobSeekerDao jobSeekerDao) {
 		this.cityDao = cityDao;
 		this.modelMapper = modelMapper;
+		this.jobSeekerDao=jobSeekerDao;
+		
 	}
-
-	@Override
+	/*@Override
 	public Result save(CityDto cityDto) {
 		City city = modelMapper.map(cityDto, City.class);
 		if (!existCity(cityDto.getCityName())) {
@@ -50,12 +54,33 @@ public class CityManager implements CityService {
 		} else {
 			return new ErrorDataResult(cityDto.getCityName(), "kayıtlı olduğu için kaydedilemedi");
 		}
+	}*/
+	/*private boolean existCity(String city) {
+	return cityDao.findByCityName(city) != null;
+	}*/
+	
+	@Override
+	public Result save(CityDto cityDto) {
+		Optional<JobSeeker> jobSeeker=jobSeekerDao.findById(cityDto.getJobSeekerId());
+		if(jobSeeker.isPresent()) {
+			City city=modelMapper.map(cityDto, City.class);
+			City savedCity=this.cityDao.save(city);
+			return new SuccessDataResult(modelMapper.map(savedCity, City.class));
+		}else  {
+			return new ErrorDataResult<>("JobSeeker is not present");
+		}
 	}
-
-	private boolean existCity(String city) {
-		return cityDao.findByCityName(city) != null;
-	}
-
+	/*@Override
+	public Result save(CoverLetterDto coverLetterDto) {
+		Optional<JobSeeker> jobSeeker=jobSeekerDao.findById(coverLetterDto.getJobSeekerId());
+		if(jobSeeker.isPresent()) {
+			CoverLetter coverLetter=modelMapper.map(coverLetterDto, CoverLetter.class);
+			CoverLetter savedCoverLetter=this.coverLetterDao.save(coverLetter);
+			return new SuccessDataResult(modelMapper.map(savedCoverLetter, CoverLetter.class));
+		}else  {
+			return new ErrorDataResult<>("JobSeeker is not present");
+		}
+	}*/
 	@Override
 	public DataResult<List<CityDto>> getAll() {
 		List<City> cities = this.cityDao.findAll();

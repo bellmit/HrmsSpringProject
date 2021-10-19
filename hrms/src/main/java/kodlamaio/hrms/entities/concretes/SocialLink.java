@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,5 +30,9 @@ public class SocialLink {
 	@ManyToOne()
 	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
+	
+	@JoinColumn(name = "cv_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private CurriculumVitae curriculumVitae;
 
 }

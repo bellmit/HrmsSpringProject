@@ -25,10 +25,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Table(name = "schools")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
-@Table(name = "schools")
+
 public class School {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "Curriculum_vitae")
+@Table(name = "curriculum_vitae")//@Table(name = "Curriculum_vitae")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({ "HybernateLazyInitializer", "handler", "products" })
@@ -38,16 +39,15 @@ public class CurriculumVitae {
 	@OneToOne()
 	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
-
-	@Column(name = "githup_link")
-	private String githupLink;
-
-	@Column(name = "linkedln_link")
-	private String linkedlnLink;
-
-	@Column(name = "cover_letter")
-	private String coverLetter;
-
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
+	private List<CoverLetter> coverLetters;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
+	private List<SocialLink> socialLinks;
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<Image> images;
@@ -67,9 +67,10 @@ public class CurriculumVitae {
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
 	private List<JobExperience> jobExperiences;
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculumVitae")
-	private List<Image> imageUrls;
+	
+	@OneToOne()
+	@JoinColumn(name = "city_id")
+	private City city;
+	
 
 }

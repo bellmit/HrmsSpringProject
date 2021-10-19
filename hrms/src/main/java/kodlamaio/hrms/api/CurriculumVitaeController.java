@@ -23,15 +23,8 @@ public class CurriculumVitaeController {
 
 	@Autowired
 	public CurriculumVitaeController(CurriculumVitaeService curriculumVitaeService) {
-		super();
 		this.curriculumVitaeService = curriculumVitaeService;
 	}
-
-	@PostMapping("/save")
-	public Result save(@RequestBody CurriculumVitae curriculumVitae) {
-		return this.curriculumVitaeService.save(curriculumVitae);
-	}
-
 	@GetMapping("/getAll")
 	public DataResult<List<CurriculumVitae>> getAll() {
 		return this.curriculumVitaeService.getAll();
@@ -42,9 +35,9 @@ public class CurriculumVitaeController {
 		return this.curriculumVitaeService.JobSeekerWithCvDto(id);
 	}
 
-	@GetMapping("/getAllByJobSeekerId")
-	public DataResult<CurriculumVitae> getAllByJobSeekerId(int jobSeekerId) {
-		return this.curriculumVitaeService.getAllByJobSeekerId(jobSeekerId);
+	@GetMapping("/getByJobSeekerId")
+	public DataResult<CurriculumVitae> getByJobSeekerId(int jobSeekerId) {
+		return this.curriculumVitaeService.getByJobSeekerId(jobSeekerId);
 	}
 
 	/*@GetMapping("/getAllJobSeekerIdSortedWithGraduationYear")

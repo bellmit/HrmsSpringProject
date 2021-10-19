@@ -52,15 +52,15 @@ public class JobSeeker extends User {
 	private boolean isVerify;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cvId")
+	@JoinColumn(name = "cv_id")/*cvId*/
 	private CurriculumVitae curriculumVitae;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<School> schools;
-
-	/*
-	 * @OneToMany(mappedBy="jobSeeker") private List<SocialLink> socialLinks;
-	 */
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id")
+	private City city;
 
 }

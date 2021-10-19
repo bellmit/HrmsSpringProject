@@ -11,24 +11,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JobSeekerWithCvDto {
 	private int cvId;//CirriculumVitae
-	private String IdentityNumber;//js
-	private String firstName;//jseeker
-	private String lastName;//js
+	private String identityNumber;//JobSeeker
+	private String firstName;//JobSeeker
+	private String lastName;//JobSeeker
 	private String imageUrl;//Image
 	private String schoolName;//School
 	private String departmant;//School	
 	private Date startDate;//School
 	private Date graduationYear;//School
-	private String planguageName;//programingLanguage
-	private int plevel;//programingLanguage
+	private String planguageName;//ProgramingLanguage
+	private int plevel;//ProgramingLanguage
 	private String flanguageName;//ForeignLangauge
-	private int flevel;//ForeignLangauge
-	private String coverLetter;//CirriculumVitae
-	private String githupLink;//CirriculumVitae
-	private String linkedlnLink;//CirriculumVitae
+	private int level;//ForeignLangauge
+	private String text;//CoverLetter
+	private String socialUrl;//SocialLink
 	private boolean isStillWork;//jobExperience
-	private Date startedDate;//jobExperience
-	private Date endedDate;//jobExperience
-	private String companyName;//jobExperience
+	private Date startedDate;//JobExperience
+	private Date endedDate;//JobExperience
+	private String companyName;//JobExperience
+	private String cityName;//City
 	
 }

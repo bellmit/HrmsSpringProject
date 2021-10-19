@@ -3,9 +3,7 @@ package kodlamaio.hrms.entities.dtos;
 import lombok.Data;
 
 @Data
-public class CityDto {
+public class ImageDto {
 	private int jobSeekerId;
-	//private int cityId;
-	private String cityName;
-
+	private String imageUrl;
 }
